@@ -3,69 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧广电门户系统</title>
+    <title>智慧广电门户系统 | 基于动态权限算法的基层治理平台</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
+    <!-- 顶部导航栏 -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
                 <i class="fas fa-tv"></i>
-                <span>智慧广电门户系统</span>
+                <h1>智慧广电门户系统</h1>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
-                <li><a href="dashboard.html"><i class="fas fa-cogs"></i> 管理后台</a></li>
-                <li><a href="#features"><i class="fas fa-star"></i> 特色功能</a></li>
-                <li><a href="login.html" class="btn-login"><i class="fas fa-sign-in-alt"></i> 登录</a></li>
-            </ul>
+            <nav class="main-nav">
+                <a href="#" class="active"><i class="fas fa-home"></i> 首页</a>
+                <a href="login.html"><i class="fas fa-sign-in-alt"></i> 系统登录</a>
+                <a href="#features"><i class="fas fa-star"></i> 核心功能</a>
+                <a href="#about"><i class="fas fa-info-circle"></i> 平台简介</a>
+                <a href="dashboard.html"><i class="fas fa-cogs"></i> 管理后台</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
+    <!-- 主内容区 -->
     <main class="container">
+        <!-- 英雄头图区域 -->
         <section class="hero">
-            <h1>基于动态权限算法的智慧广电门户系统</h1>
-            <p class="subtitle">为基层治理提供精准、安全、高效的信息服务平台</p>
-            <div class="cta-buttons">
-                <a href="dashboard.html" class="btn-primary">体验演示版</a>
-                <a href="#features" class="btn-secondary">了解功能</a>
+            <div class="hero-content">
+                <h2>基于动态权限算法的智慧广电门户系统</h2>
+                <p class="subtitle">为基层治理提供精准、安全、高效的信息服务平台，推动广播电视向综合数字服务转型。</p>
+                <div class="hero-buttons">
+                    <a href="login.html" class="btn btn-primary">立即体验</a>
+                    <a href="#features" class="btn btn-secondary">了解功能</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- 这里未来可以放一张有科技感的示意图 -->
+                <div class="visual-placeholder">
+                    <i class="fas fa-sitemap"></i>
+                    <p>动态权限架构示意</p>
+                </div>
             </div>
         </section>
 
-        <section id="features" class="features">
-            <h2>核心功能模块</h2>
+        <!-- 核心功能展示 -->
+        <section id="features" class="features-section">
+            <h2><i class="fas fa-sliders-h"></i> 平台核心功能</h2>
+            <p class="section-description">依托创新技术，解决传统广电门户系统在基层治理中的核心痛点。</p>
+            
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
+                <!-- 功能卡片 1 -->
+                <article class="feature-card">
+                    <div class="card-icon">
                         <i class="fas fa-user-shield"></i>
                     </div>
                     <h3>动态权限管理</h3>
-                    <p>基于ABAC算法，实现用户-区域-数据三重映射，确保数据安全隔离</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-magic"></i>
+                    <p>基于ABAC（属性基访问控制）算法，实现“用户-区域-数据”三重映射。确保乡镇管理员的操作数据天然隔离，从架构源头杜绝信息跨域泄露。</p>
+                    <ul class="feature-tech">
+                        <li>Spring Security深度扩展</li>
+                        <li>字段级数据隔离</li>
+                        <li>权限秒级生效</li>
+                    </ul>
+                </article>
+                <!-- 功能卡片 2 -->
+                <article class="feature-card">
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
                     </div>
-                    <h3>可视化模板引擎</h3>
-                    <p>拖拽式编辑，零代码定制乡镇专属门户，支持多终端自适应</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
+                    <h3>多终端自适应</h3>
+                    <p>采用Vue3组件化与响应式设计，配合可视化模板引擎。支持管理员零代码拖拽定制门户，并确保在电视大屏与手机端的完美协同显示。</p>
+                    <ul class="feature-tech">
+                        <li>Vue 3 + Element Plus</li>
+                        <li>可视化拖拽编辑</li>
+                        <li>多端样式自适配</li>
+                    </ul>
+                </article>
+                <!-- 功能卡片 3 -->
+                <article class="feature-card">
+                    <div class="card-icon">
                         <i class="fas fa-broadcast-tower"></i>
                     </div>
                     <h3>精准内容推送</h3>
-                    <p>基于区域标签，实现教育、党建、政务信息100%精准触达</p>
+                    <p>构建教育、党建、乡村治理等多场景融合内容服务。基于动态区域标签与智能路由，实现重要通知与服务100%精准触达目标人群。</p>
+                    <ul class="feature-tech">
+                        <li>场景化内容融合</li>
+                        <li>智能区域化标签</li>
+                        <li>全链路日志追踪</li>
+                    </ul>
+                </article>
+                <!-- 功能卡片 4 -->
+                <article class="feature-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>运营决策支持</h3>
+                    <p>集成全链路操作日志追踪与多维度运营数据分析看板。为安全审计与运营决策提供直观的数据支撑，助力基层数字化治理。</p>
+                    <ul class="feature-tech">
+                        <li>ELK日志分析栈</li>
+                        <li>ECharts可视化</li>
+                        <li>实时异常告警</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- 平台简介 -->
+        <section id="about" class="about-section">
+            <h2><i class="fas fa-info-circle"></i> 平台简介</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>智慧广电门户系统平台是一个利用现代信息技术，旨在提升基层治理效率的<strong>综合性数字服务平台</strong>。</p>
+                    <p>针对传统系统存在的<em>权限管理粗放、定制成本高昂、信息协同困难</em>等核心问题，本平台通过创新的动态权限算法与多终端自适应技术，实现了：</p>
+                    <dl class="about-list">
+                        <dt><i class="fas fa-check-circle"></i> 数据安全精准管控</dt>
+                        <dd>权限与行政层级智能匹配，确保数据在乡镇、村社间严格隔离。</dd>
+                        
+                        <dt><i class="fas fa-check-circle"></i> 门户灵活零代码定制</dt>
+                        <dd>基层管理员可通过拖拽方式，快速构建符合本地特色的宣传与服务门户。</dd>
+                        
+                        <dt><i class="fas fa-check-circle"></i> 多业务场景深度融合</dt>
+                        <dd>打通政务、教育、党建、民生等业务，为群众提供一站式服务入口。</dd>
+                    </dl>
+                </div>
+                <div class="about-image">
+                    <!-- 占位，未来可替换为平台架构图 -->
+                    <div class="arch-placeholder">
+                        <div class="arch-node">用户层</div>
+                        <div class="arch-node">业务层</div>
+                        <div class="arch-node">数据层</div>
+                        <div class="arch-line"></div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 西南民族大学计算机与人工智能学院 - 智慧广电项目组</p>
-        <p>项目成员：张昕怡、蒋周素、马杰 | 指导老师：黄闽英 副教授</p>
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <p><strong>智慧广电门户系统</strong> — 西南民族大学大学生创新创业训练计划项目</p>
+                <p class="footer-note">© 2025 基于动态权限算法的智慧广电门户系统研发团队。本页面为项目原型展示。</p>
+            </div>
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-github"></i> 项目仓库</a>
+                <a href="#"><i class="fas fa-file-contract"></i> 项目文档</a>
+            </div>
+        </div>
     </footer>
+
+    <!-- 可选的返回顶部按钮 -->
+    <a href="#" class="back-to-top" aria-label="返回顶部"><i class="fas fa-chevron-up"></i></a>
 </body>
 </html>
