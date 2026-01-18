@@ -1,12 +1,131 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>登录 - 智慧广电</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录 - 智慧广电门户系统</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <h1>登录页面</h1>
-    <p>基于动态权限算法的登录系统</p>
-    <a href="index.html">返回首页</a>
+<body class="login-page">
+    <!-- 头部导航（与首页保持一致） -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tv"></i>
+                <h1>智慧广电门户系统</h1>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 登录主区域 -->
+    <main class="login-container">
+        <div class="login-card">
+            <!-- 左侧：登录表单 -->
+            <section class="login-form-section">
+                <div class="form-header">
+                    <i class="fas fa-user-circle login-icon"></i>
+                    <h2>用户登录</h2>
+                    <p class="form-subtitle">请输入您的账号和密码访问智慧广电门户系统</p>
+                </div>
+
+                <form action="#" method="post" class="login-form">
+                    <!-- 账号输入 -->
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i> 用户账号
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="请输入账号或手机号" 
+                            required
+                            autocomplete="username"
+                        >
+                        <small class="form-hint">请输入您的注册账号或手机号码</small>
+                    </div>
+
+                    <!-- 密码输入 -->
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> 用户密码
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="请输入密码" 
+                            required
+                            autocomplete="current-password"
+                        >
+                        <div class="password-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember" id="remember">
+                                <span>记住密码</span>
+                            </label>
+                            <a href="#" class="forgot-link">忘记密码？</a>
+                        </div>
+                    </div>
+
+                    <!-- 区域选择（体现项目特色） -->
+                    <div class="form-group">
+                        <label for="region">
+                            <i class="fas fa-map-marker-alt"></i> 所在区域
+                        </label>
+                        <select id="region" name="region" required>
+                            <option value="" disabled selected>请选择您的行政区域</option>
+                            <option value="province">省级用户</option>
+                            <option value="city">市级用户</option>
+                            <option value="county">县级用户</option>
+                            <option value="town">乡镇用户</option>
+                            <option value="village">村级用户</option>
+                        </select>
+                        <small class="form-hint">* 不同区域用户将看到相应的本地化内容</small>
+                    </div>
+
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="btn btn-primary btn-login">
+                        <i class="fas fa-sign-in-alt"></i> 登录系统
+                    </button>
+
+                    <!-- 注册引导 -->
+                    <div class="form-footer">
+                        <p>还没有账号？ <a href="#" class="register-link">立即注册</a></p>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 右侧：系统介绍（体现项目价值） -->
+            <aside class="login-info">
+                <h3><i class="fas fa-info-circle"></i> 系统安全提示</h3>
+                <ul class="security-tips">
+                    <li><i class="fas fa-shield-alt"></i> <strong>动态权限保护：</strong>基于ABAC算法，您的数据访问将严格限定在所选区域内</li>
+                    <li><i class="fas fa-mobile-alt"></i> <strong>多终端支持：</strong>一次登录，即可在电脑、手机、电视大屏同步使用</li>
+                    <li><i class="fas fa-history"></i> <strong>操作全程追溯：</strong>所有登录和操作均有完整日志记录，保障安全</li>
+                    <li><i class="fas fa-user-check"></i> <strong>身份精准验证：</strong>区域+账号双重验证，确保信息精准触达</li>
+                </ul>
+
+                <div class="demo-account">
+                    <h4><i class="fas fa-key"></i> 演示账号（仅供测试）</h4>
+                    <p><strong>账号：</strong>demo_user</p>
+                    <p><strong>密码：</strong>demo123</p>
+                    <p><strong>区域：</strong>选择"乡镇用户"体验区域权限特性</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <p><strong>智慧广电门户系统</strong> — 基于动态权限算法的基层治理平台</p>
+            <p class="footer-note">© 2025 西南民族大学大学生创新创业训练计划项目</p>
+        </div>
+    </footer>
 </body>
 </html>
