@@ -127,5 +127,23 @@
             <p class="footer-note">© 2025 西南民族大学大学生创新创业训练计划项目</p>
         </div>
     </footer>
+<!-- 引入JavaScript文件 -->
+<script type="module" src="js/main.js"></script>
+
+<!-- 修改登录表单，添加ID -->
+<form id="login-form" class="login-form">
+    <div class="form-group">
+        <label for="username"><i class="fas fa-user"></i> 用户名</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password"><i class="fas fa-lock"></i> 密码</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">
+        <i class="fas fa-sign-in-alt"></i> 登录
+    </button>
+</form>
+
 </body>
 </html>
