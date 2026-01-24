@@ -5,11 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户登录 - 智慧广电门户系统</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 添加一些登录页专用样式 */
+        .login-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .login-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .login-form-section {
+            padding: 40px;
+        }
+        
+        .login-info {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-icon {
+            font-size: 3rem;
+            color: #4a6fa5;
+            margin-bottom: 15px;
+        }
+        
+        .form-subtitle {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #4a6fa5;
+            outline: none;
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .security-tips {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .security-tips li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .security-tips li i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: #4a6fa5;
+        }
+        
+        .demo-account {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #4a6fa5;
+        }
+    </style>
 </head>
 <body class="login-page">
-    <!-- 头部导航（与首页保持一致） -->
+    <!-- 头部导航 -->
     <header class="main-header">
         <div class="container header-container">
             <div class="logo">
@@ -33,7 +145,8 @@
                     <p class="form-subtitle">请输入您的账号和密码访问智慧广电门户系统</p>
                 </div>
 
-                <form action="#" method="post" class="login-form">
+                <!-- 只有一个表单，id为login-form，没有action -->
+                <form id="login-form" class="login-form">
                     <!-- 账号输入 -->
                     <div class="form-group">
                         <label for="username">
@@ -47,7 +160,6 @@
                             required
                             autocomplete="username"
                         >
-                        <small class="form-hint">请输入您的注册账号或手机号码</small>
                     </div>
 
                     <!-- 密码输入 -->
@@ -63,29 +175,6 @@
                             required
                             autocomplete="current-password"
                         >
-                        <div class="password-options">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="remember" id="remember">
-                                <span>记住密码</span>
-                            </label>
-                            <a href="#" class="forgot-link">忘记密码？</a>
-                        </div>
-                    </div>
-
-                    <!-- 区域选择（体现项目特色） -->
-                    <div class="form-group">
-                        <label for="region">
-                            <i class="fas fa-map-marker-alt"></i> 所在区域
-                        </label>
-                        <select id="region" name="region" required>
-                            <option value="" disabled selected>请选择您的行政区域</option>
-                            <option value="province">省级用户</option>
-                            <option value="city">市级用户</option>
-                            <option value="county">县级用户</option>
-                            <option value="town">乡镇用户</option>
-                            <option value="village">村级用户</option>
-                        </select>
-                        <small class="form-hint">* 不同区域用户将看到相应的本地化内容</small>
                     </div>
 
                     <!-- 提交按钮 -->
@@ -93,28 +182,28 @@
                         <i class="fas fa-sign-in-alt"></i> 登录系统
                     </button>
 
-                    <!-- 注册引导 -->
-                    <div class="form-footer">
-                        <p>还没有账号？ <a href="#" class="register-link">立即注册</a></p>
+                    <!-- 演示账户提示 -->
+                    <div class="demo-hint">
+                        <p><strong>演示账户：</strong> admin / 任何密码</p>
                     </div>
                 </form>
             </section>
 
-            <!-- 右侧：系统介绍（体现项目价值） -->
+            <!-- 右侧：系统介绍 -->
             <aside class="login-info">
-                <h3><i class="fas fa-info-circle"></i> 系统安全提示</h3>
+                <h3><i class="fas fa-info-circle"></i> 系统特色功能</h3>
                 <ul class="security-tips">
-                    <li><i class="fas fa-shield-alt"></i> <strong>动态权限保护：</strong>基于ABAC算法，您的数据访问将严格限定在所选区域内</li>
-                    <li><i class="fas fa-mobile-alt"></i> <strong>多终端支持：</strong>一次登录，即可在电脑、手机、电视大屏同步使用</li>
-                    <li><i class="fas fa-history"></i> <strong>操作全程追溯：</strong>所有登录和操作均有完整日志记录，保障安全</li>
-                    <li><i class="fas fa-user-check"></i> <strong>身份精准验证：</strong>区域+账号双重验证，确保信息精准触达</li>
+                    <li><i class="fas fa-shield-alt"></i> <strong>动态权限管理：</strong>基于ABAC算法，实现精准数据隔离</li>
+                    <li><i class="fas fa-mobile-alt"></i> <strong>多终端适配：</strong>支持PC、手机、电视大屏同步显示</li>
+                    <li><i class="fas fa-palette"></i> <strong>可视化编辑：</strong>零代码拖拽定制门户界面</li>
+                    <li><i class="fas fa-broadcast-tower"></i> <strong>精准内容推送：</strong>区域化信息智能路由</li>
                 </ul>
 
                 <div class="demo-account">
-                    <h4><i class="fas fa-key"></i> 演示账号（仅供测试）</h4>
-                    <p><strong>账号：</strong>demo_user</p>
-                    <p><strong>密码：</strong>demo123</p>
-                    <p><strong>区域：</strong>选择"乡镇用户"体验区域权限特性</p>
+                    <h4><i class="fas fa-key"></i> 项目背景</h4>
+                    <p>西南民族大学大学生创新创业训练计划项目</p>
+                    <p>基于动态权限算法的智慧广电门户系统</p>
+                    <p>指导教师：黄闽英 副教授</p>
                 </div>
             </aside>
         </div>
@@ -127,23 +216,8 @@
             <p class="footer-note">© 2025 西南民族大学大学生创新创业训练计划项目</p>
         </div>
     </footer>
-<!-- 引入JavaScript文件 -->
-<script type="module" src="js/main.js"></script>
 
-<!-- 修改登录表单，添加ID -->
-<form id="login-form" class="login-form">
-    <div class="form-group">
-        <label for="username"><i class="fas fa-user"></i> 用户名</label>
-        <input type="text" id="username" name="username" required>
-    </div>
-    <div class="form-group">
-        <label for="password"><i class="fas fa-lock"></i> 密码</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary btn-block">
-        <i class="fas fa-sign-in-alt"></i> 登录
-    </button>
-</form>
-
+    <!-- 引入JavaScript -->
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
