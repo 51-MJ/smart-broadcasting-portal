@@ -3,55 +3,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧广电门户系统 | 基于动态权限算法的基层治理平台</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>智慧广电 - 广播电视融合传播平台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <header class="main-header">
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-tv"></i>
-                <h1>智慧广电门户系统</h1>
-            </div>
-            <nav class="main-nav">
-                <a href="#" class="active"><i class="fas fa-home"></i> 首页</a>
-                <a href="login.html"><i class="fas fa-sign-in-alt"></i> 系统登录</a>
-                <a href="#features"><i class="fas fa-star"></i> 核心功能</a>
-                <a href="#about"><i class="fas fa-info-circle"></i> 平台简介</a>
-                <a href="dashboard.html"><i class="fas fa-cogs"></i> 管理后台</a>
-            </nav>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container">
+        <!-- 顶部导航 -->
+        <div class="header">
+            <div class="logo">🌐 智慧广电</div>
+            <a href="features.html" class="nav-btn">功能介绍</a>
         </div>
-    </header>
 
-    <!-- 主内容区 -->
-    <main class="container">
-        <!-- 英雄头图区域 -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2>基于动态权限算法的智慧广电门户系统</h2>
-                <p class="subtitle">为基层治理提供精准、安全、高效的信息服务平台，推动广播电视向综合数字服务转型。</p>
-                <div class="hero-buttons">
-                    <a href="login.html" class="btn btn-primary">立即体验</a>
-                    <a href="#features" class="btn btn-secondary">了解功能</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <!-- 这里未来可以放一张有科技感的示意图 -->
-                <div class="visual-placeholder">
-                    <i class="fas fa-sitemap"></i>
-                    <p>动态权限架构示意</p>
-                </div>
-            </div>
-        </section>
+        <!-- 中心内容 -->
+        <div class="main-content">
+            <h1 class="main-title">智慧广电</h1>
+            <p class="subtitle">
+                连接全球广电内容，实现多渠道融合分发。
+                通过人工智能和大数据技术，为用户提供个性化的媒体体验。
+            </p>
 
-        <!-- 核心功能展示 -->
-        <section id="features" class="features-section">
-            <h2><i class="fas fa-sliders-h"></i> 平台核心功能</h2>
-            <p class="section-description">依托创新技术，解决传统广电门户系统在基层治理中的核心痛点。</p>
-            
-            <div class="features-grid">
+            <div class="action-buttons">
+                <a href="login.html" class="btn-primary">立即登录</a>
+                <a href="features.html" class="btn-secondary">了解更多</a>
+            </div>
+        </div>
+
+        <!-- 底部信息 -->
+        <div class="footer">
+            <div>© 2026 智慧广电. 保留所有权利。</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">隐私政策</a>
+                <a href="#" class="footer-link">服务条款</a>
+                <a href="#" class="footer-link">联系我们</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 神经网络背景系统 ====================
+        class NeuralNetworkBackground {
+            constructor() {
+                this.canvas = document.getElementById('canvas-bg');
+                this.ctx = this.canvas.getContext('2d');
+
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+
+                // 神经网络参数 - 降低密度，避免遮挡文字
+                this.config = {
+                    nodeCount: 60,  // 减少节点数量
+                    connectionDistance: 120,  // 缩短连接距离
+                    nodeSize: 2.5,
+                    animationSpeed: 0.015,
+                    pulseSpeed: 0.03,
+                    textSafeZone: 200  // 文字安全区域
+                };
+
+                this.nodes = [];
+                this.connections = [];
+                this.pulses = [];
+                this.time = 0;
+
+                this.createNetwork();
+                this.animate();
+
+                window.addEventListener('resize', () => this.onWindowResize());
+            }
+
+            createNetwork() {
+                this.nodes = [];
+                this.connections = [];
+
+                const centerX = this.canvas.width / 2;
+                const centerY = this.canvas.height / 2;
+                const safeZone = this.config.textSafeZone;
+
+                // 创建简洁的圆形分布 - 只在外圈形成环形网络
+                const circleRadius = 250;  // 圆形半径
+                const nodeCount = 24;  // 总节点数
+
+                // 按照圆形均匀分布节点
+                for (let i = 0; i < nodeCount; i++) {
+                    const angle = (i / nodeCount) * Math.PI * 2;
+                    
+                    // 主圆环上的节点
+                    let x = centerX + Math.cos(angle) * circleRadius;
+                    let y = centerY + Math.sin(angle) * circleRadius;
+
+                    // 添加少量随机偏移（不超过20像素）
+                    x += (Math.random() - 0.5) * 20;
+                    y += (Math.random() - 0.5) * 20;
+
+                    // 确保在画布范围内
+                    x = Math.max(50, Math.min(this.canvas.width - 50, x));
+                    y = Math.max(50, Math.min(this.canvas.height - 50, y));
+
+                    // 确定节点类型：顶部为核心，其他为普通节点
+                    let type = 'region';
+                    let size = this.config.nodeSize;
+                    
+                    if (Math.abs(angle - Math.PI * 1.5) < Math.PI / 12) {  // 上方的几个节点
+                        type = 'core';
+                        size = this.config.nodeSize * 1.8;
+                    } else if (Math.abs(angle - Math.PI * 0.5) < Math.PI / 6) {  // 下方节点稍小
+                        type = 'peripheral';
+                        size = this.config.nodeSize * 0.8;
+                    }
+
+                    this.nodes.push({
+                        x,
+                        y,
+                        vx: 0,  // 固定节点
+                        vy: 0,
+                        size: size,
+                        activity: Math.random(),
+                        phase: Math.random() * Math.PI * 2,
+                        type: type
+                    });
+                }
+
+                // 创建环形连接
+                this.createCircleConnections();
+            }
+
+            createCircleConnections() {
+                // 只连接圆形上相邻的节点 - 形成简洁的环形网络
+                const nodeCount = this.nodes.length;
+
+                // 1. 相邻节点连接（环形）
+                for (let i = 0; i < nodeCount; i++) {
+                    const nextIndex = (i + 1) % nodeCount;
+
+                    this.connections.push({
+                        from: i,
+                        to: nextIndex,
+                        strength: 0.8,
+                        distance: Math.sqrt(
+                            (this.nodes[nextIndex].x - this.nodes[i].x) ** 2 +
+                            (this.nodes[nextIndex].y - this.nodes[i].y) ** 2
+                        ),
+                        active: true,
+                        type: 'highway'
+                    });
+                }
+
+                // 2. 交叉连接 - 每隔几个节点连接一次（让网络不会太稀疏）
+                for (let i = 0; i < nodeCount; i++) {
+                    const crossIndex = (i + Math.floor(nodeCount / 4)) % nodeCount;
+
+                    if (crossIndex !== i && crossIndex !== (i + 1) % nodeCount && crossIndex !== (i - 1 + nodeCount) % nodeCount) {
+                        this.connections.push({
+                            from: i,
+                            to: crossIndex,
+                            strength: 0.4,
+                            distance: Math.sqrt(
+                                (this.nodes[crossIndex].x - this.nodes[i].x) ** 2 +
+                                (this.nodes[crossIndex].y - this.nodes[i].y) ** 2
+                            ),
+                            active: Math.random() < 0.6,
+                            type: 'secondary'
+                        });
+                    }
+                }
+            }
+
+            findNearestNode(point) {
+                let nearest = null;
+                let minDistance = Infinity;
+
+                this.nodes.forEach(node => {
+                    const distance = Math.sqrt((node.x - point.x) ** 2 + (node.y - point.y) ** 2);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearest = node;
+                    }
+                });
+
+                return nearest;
+            }
+
+            areRegionsAdjacent(region1, region2) {
+                if (!region1 || !region2) return false;
+
+                const dx = region1.x - region2.x;
+                const dy = region1.y - region2.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                return distance < 300;  // 相邻区域距离阈值
+            }
+
+            onWindowResize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.createNetwork();
+            }
+
+            animate = () => {
+                this.time += this.config.animationSpeed;
+                this.update();
+                this.draw();
+                requestAnimationFrame(this.animate);
+            }
+
+            update() {
+                // 节点固定不动，只更新活跃度和连接状态
+                this.nodes.forEach(node => {
+                    // 更新节点活跃度 - 让节点有呼吸效果
+                    node.activity = 0.5 + 0.3 * Math.sin(this.time * 2 + node.phase);
+                });
+
+                // 随机激活连接
+                this.connections.forEach(conn => {
+                    if (Math.random() < 0.008) {
+                        conn.active = !conn.active;
+                    }
+                });
+
+                // 创建脉冲
+                if (Math.random() < 0.015) {
+                    const activeConnections = this.connections.filter(c => c.active);
+                    if (activeConnections.length > 0) {
+                        const randomConn = activeConnections[Math.floor(Math.random() * activeConnections.length)];
+                        this.pulses.push({
+                            connection: randomConn,
+                            progress: 0,
+                            speed: this.config.pulseSpeed + Math.random() * 0.01
+                        });
+                    }
+                }
+
+                // 更新脉冲
+                this.pulses = this.pulses.filter(pulse => {
+                    pulse.progress += pulse.speed;
+                    return pulse.progress < 1;
+                });
+            }
+
+            draw() {
+                // 绘制动态背景
+                this.drawBackground();
+
+                // 绘制连接线
+                this.drawConnections();
+
+                // 绘制脉冲
+                this.drawPulses();
+
+                // 绘制节点
+                this.drawNodes();
+            }
+
+            drawBackground() {
+                // 创建深色渐变背景
+                const gradient = this.ctx.createRadialGradient(
+                    this.canvas.width / 2, this.canvas.height / 2, 0,
+                    this.canvas.width / 2, this.canvas.height / 2, Math.max(this.canvas.width, this.canvas.height) / 2
+                );
+                gradient.addColorStop(0, 'rgba(0, 15, 20, 0.1)');
+                gradient.addColorStop(0.5, 'rgba(0, 10, 15, 0.08)');
+                gradient.addColorStop(1, 'rgba(0, 5, 10, 0.05)');
+
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                // 添加一些随机的背景粒子
+                for (let i = 0; i < 50; i++) {
+                    const x = (i * 37) % this.canvas.width;
+                    const y = (i * 23 + this.time * 10) % this.canvas.height;
+                    const size = 1 + Math.sin(this.time * 0.5 + i) * 0.5;
+
+                    this.ctx.fillStyle = `rgba(100, 150, 200, ${0.1 + Math.sin(this.time + i) * 0.05})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, size, 0, Math.PI * 2);
+                    this.ctx.fill();
+                }
+
+                // 添加一些流动的光线效果
+                for (let i = 0; i < 8; i++) {
+                    const angle = (this.time * 0.2 + i * Math.PI / 4) % (Math.PI * 2);
+                    const startX = this.canvas.width / 2 + Math.cos(angle) * 100;
+                    const startY = this.canvas.height / 2 + Math.sin(angle) * 100;
+                    const endX = this.canvas.width / 2 + Math.cos(angle) * 400;
+                    const endY = this.canvas.height / 2 + Math.sin(angle) * 400;
+
+                    const gradient = this.ctx.createLinearGradient(startX, startY, endX, endY);
+                    gradient.addColorStop(0, 'rgba(100, 150, 220, 0.03)');
+                    gradient.addColorStop(0.5, 'rgba(120, 170, 240, 0.02)');
+                    gradient.addColorStop(1, 'rgba(100, 150, 220, 0)');
+
+                    this.ctx.strokeStyle = gradient;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(startX, startY);
+                    this.ctx.lineTo(endX, endY);
+                    this.ctx.stroke();
+                }
+            }
+
+            drawConnections() {
+                this.connections.forEach(conn => {
+                    const fromNode = this.nodes[conn.from];
+                    const toNode = this.nodes[conn.to];
+
+                    if (!fromNode || !toNode) return;
+
+                    // 根据连接类型设置不同的样式
+                    let baseColor, alpha, width;
+                    if (conn.type === 'highway') {
+                        baseColor = '165, 180, 252'; // 蓝色 - 高速连接
+                        alpha = conn.active ? 0.7 : 0.4;
+                        width = conn.active ? 2.8 : 1.8;
+                    } else if (conn.type === 'local') {
+                        baseColor = '147, 197, 253'; // 浅蓝色 - 区域内连接
+                        alpha = conn.active ? 0.5 : 0.25;
+                        width = conn.active ? 2.0 : 1.2;
+                    } else if (conn.type === 'secondary') {
+                        baseColor = '180, 200, 255'; // 更浅的蓝色 - 次级连接
+                        alpha = conn.active ? 0.4 : 0.2;
+                        width = conn.active ? 1.6 : 0.9;
+                    } else if (conn.type === 'peripheral') {
+                        baseColor = '200, 220, 255'; // 最浅的蓝色 - 外围连接
+                        alpha = conn.active ? 0.3 : 0.15;
+                        width = conn.active ? 1.4 : 0.8;
+                    } else {
+                        baseColor = '165, 180, 252'; // 默认
+                        alpha = conn.active ? 0.4 : 0.2;
+                        width = conn.active ? 2 : 1;
+                    }
+
+                    // 绘制主连接线
+                    this.ctx.strokeStyle = `rgba(${baseColor}, ${alpha})`;
+                    this.ctx.lineWidth = width;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(fromNode.x, fromNode.y);
+                    this.ctx.lineTo(toNode.x, toNode.y);
+                    this.ctx.stroke();
+
+                    // 为活跃连接添加流动效果
+                    if (conn.active && Math.random() < 0.4) {
+                        const flowProgress = (this.time * 0.3 + conn.from * 0.1) % 1;
+                        const flowX = fromNode.x + (toNode.x - fromNode.x) * flowProgress;
+                        const flowY = fromNode.y + (toNode.y - fromNode.y) * flowProgress;
+
+                        // 流动小点
+                        this.ctx.fillStyle = `rgba(${baseColor}, 0.9)`;
+                        this.ctx.beginPath();
+                        this.ctx.arc(flowX, flowY, 1.8, 0, Math.PI * 2);
+                        this.ctx.fill();
+
+                        // 小点光晕
+                        const glowGradient = this.ctx.createRadialGradient(flowX, flowY, 0, flowX, flowY, 6);
+                        glowGradient.addColorStop(0, `rgba(${baseColor}, 0.5)`);
+                        glowGradient.addColorStop(1, `rgba(${baseColor}, 0)`);
+                        this.ctx.fillStyle = glowGradient;
+                        this.ctx.beginPath();
+                        this.ctx.arc(flowX, flowY, 6, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    }
+                });
+            }
+
+            drawPulses() {
+                this.pulses.forEach(pulse => {
+                    const conn = pulse.connection;
+                    const fromNode = this.nodes[conn.from];
+                    const toNode = this.nodes[conn.to];
+
+                    if (!fromNode || !toNode) return;
+
+                    const x = fromNode.x + (toNode.x - fromNode.x) * pulse.progress;
+                    const y = fromNode.y + (toNode.y - fromNode.y) * pulse.progress;
+
+                    // 脉冲效果 - 更细腻
+                    const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 8);
+                    gradient.addColorStop(0, 'rgba(165, 180, 252, 0.6)');
+                    gradient.addColorStop(0.7, 'rgba(165, 180, 252, 0.3)');
+                    gradient.addColorStop(1, 'rgba(165, 180, 252, 0)');
+
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, 8, 0, Math.PI * 2);
+                    this.ctx.fill();
+
+                    // 脉冲核心
+                    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+            }
+
+            drawNodes() {
+                this.nodes.forEach(node => {
+                    const x = node.x;
+                    const y = node.y;
+                    const size = node.size * (0.8 + node.activity * 0.3);
+
+                    // 根据节点类型设置不同的光晕
+                    if (node.type === 'core') {
+                        // 核心节点 - 多层蓝色光晕
+                        for (let i = 2; i >= 1; i--) {
+                            const glowSize = size + i * 4;
+                            const alpha = (3 - i) / 3 * node.activity * 0.4;
+
+                            this.ctx.fillStyle = `rgba(102, 126, 234, ${alpha})`;
+                            this.ctx.beginPath();
+                            this.ctx.arc(x, y, glowSize, 0, Math.PI * 2);
+                            this.ctx.fill();
+                        }
+                    } else if (node.type === 'region') {
+                        // 区域节点 - 紫色光晕
+                        const glowSize = size + 6;
+                        const alpha = node.activity * 0.3;
+
+                        this.ctx.fillStyle = `rgba(165, 180, 252, ${alpha})`;
+                        this.ctx.beginPath();
+                        this.ctx.arc(x, y, glowSize, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    } else {
+                        // 外围节点 - 浅色光晕
+                        const glowSize = size + 4;
+                        const alpha = node.activity * 0.2;
+
+                        this.ctx.fillStyle = `rgba(240, 147, 251, ${alpha})`;
+                        this.ctx.beginPath();
+                        this.ctx.arc(x, y, glowSize, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    }
+
+                    // 节点主体
+                    let color;
+                    if (node.type === 'core') {
+                        color = `rgba(102, 126, 234, ${0.8 + node.activity * 0.2})`;
+                    } else if (node.type === 'region') {
+                        color = `rgba(165, 180, 252, ${0.7 + node.activity * 0.3})`;
+                    } else {
+                        color = `rgba(240, 147, 251, ${0.6 + node.activity * 0.4})`;
+                    }
+
+                    this.ctx.fillStyle = color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, size, 0, Math.PI * 2);
+                    this.ctx.fill();
+
+                    // 节点边框
+                    this.ctx.strokeStyle = `rgba(255, 255, 255, ${node.activity * 0.4})`;
+                    this.ctx.lineWidth = 0.8;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, size, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                });
+            }
+        }
+
+        // ==================== 页面交互 ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // 初始化神经网络背景
+            new NeuralNetworkBackground();
+
+            // 按钮点击事件
+            document.querySelector('.btn-primary').addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+
+            document.querySelector('.btn-secondary').addEventListener('click', () => {
+                window.location.href = 'features.html';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
                 <!-- 功能卡片 1 -->
                 <article class="feature-card">
                     <div class="card-icon">
@@ -150,7 +580,7 @@
                 <a href="#"><i class="fas fa-file-contract"></i> 项目文档</a>
             </div>
         </div>
-    </footer>
+    </footer> 
 
     <!-- 可选的返回顶部按钮 -->
     <a href="#" class="back-to-top" aria-label="返回顶部"><i class="fas fa-chevron-up"></i></a>

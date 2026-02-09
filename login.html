@@ -3,221 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户登录 - 智慧广电门户系统</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* 添加一些登录页专用样式 */
-        .login-page {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .login-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        
-        .login-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .login-form-section {
-            padding: 40px;
-        }
-        
-        .login-info {
-            padding: 40px;
-            background: #f8f9fa;
-        }
-        
-        .form-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-icon {
-            font-size: 3rem;
-            color: #4a6fa5;
-            margin-bottom: 15px;
-        }
-        
-        .form-subtitle {
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #4a6fa5;
-            outline: none;
-        }
-        
-        .btn-login {
-            width: 100%;
-            padding: 15px;
-            background: #4a6fa5;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        
-        .security-tips {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .security-tips li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        .security-tips li i {
-            position: absolute;
-            left: 0;
-            top: 3px;
-            color: #4a6fa5;
-        }
-        
-        .demo-account {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border-left: 4px solid #4a6fa5;
-        }
-    </style>
+    <title>用户登录 - 智慧广电</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<body class="login-page">
-    <!-- 头部导航 -->
-    <header class="main-header">
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-tv"></i>
-                <h1>智慧广电门户系统</h1>
-            </div>
-            <nav class="main-nav">
-                <a href="index.html"><i class="fas fa-home"></i> 返回首页</a>
-            </nav>
-        </div>
-    </header>
+<body>
+    <div class="login-wrapper">
+        <a href="index.html" class="back-btn">
+            <span>←</span>
+            <span>返回首页</span>
+        </a>
 
-    <!-- 登录主区域 -->
-    <main class="login-container">
         <div class="login-card">
-            <!-- 左侧：登录表单 -->
-            <section class="login-form-section">
-                <div class="form-header">
-                    <i class="fas fa-user-circle login-icon"></i>
-                    <h2>用户登录</h2>
-                    <p class="form-subtitle">请输入您的账号和密码访问智慧广电门户系统</p>
+            <!-- 登录头部 -->
+            <div class="login-header">
+                <div class="login-logo">🌐</div>
+                <h1 class="login-title">智慧广电</h1>
+                <p class="login-subtitle">智能广电融合传播平台</p>
+            </div>
+
+            <!-- 登录表单 -->
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="请输入用户名或邮箱"
+                        required
+                    >
                 </div>
 
-                <!-- 只有一个表单，id为login-form，没有action -->
-                <form id="login-form" class="login-form">
-                    <!-- 账号输入 -->
-                    <div class="form-group">
-                        <label for="username">
-                            <i class="fas fa-user"></i> 用户账号
-                        </label>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            name="username" 
-                            placeholder="请输入账号或手机号" 
-                            required
-                            autocomplete="username"
-                        >
-                    </div>
-
-                    <!-- 密码输入 -->
-                    <div class="form-group">
-                        <label for="password">
-                            <i class="fas fa-lock"></i> 用户密码
-                        </label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            placeholder="请输入密码" 
-                            required
-                            autocomplete="current-password"
-                        >
-                    </div>
-
-                    <!-- 提交按钮 -->
-                    <button type="submit" class="btn btn-primary btn-login">
-                        <i class="fas fa-sign-in-alt"></i> 登录系统
-                    </button>
-
-                    <!-- 演示账户提示 -->
-                    <div class="demo-hint">
-                        <p><strong>演示账户：</strong> admin / 任何密码</p>
-                    </div>
-                </form>
-            </section>
-
-            <!-- 右侧：系统介绍 -->
-            <aside class="login-info">
-                <h3><i class="fas fa-info-circle"></i> 系统特色功能</h3>
-                <ul class="security-tips">
-                    <li><i class="fas fa-shield-alt"></i> <strong>动态权限管理：</strong>基于ABAC算法，实现精准数据隔离</li>
-                    <li><i class="fas fa-mobile-alt"></i> <strong>多终端适配：</strong>支持PC、手机、电视大屏同步显示</li>
-                    <li><i class="fas fa-palette"></i> <strong>可视化编辑：</strong>零代码拖拽定制门户界面</li>
-                    <li><i class="fas fa-broadcast-tower"></i> <strong>精准内容推送：</strong>区域化信息智能路由</li>
-                </ul>
-
-                <div class="demo-account">
-                    <h4><i class="fas fa-key"></i> 项目背景</h4>
-                    <p>西南民族大学大学生创新创业训练计划项目</p>
-                    <p>基于动态权限算法的智慧广电门户系统</p>
-                    <p>指导教师：黄闽英 副教授</p>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="请输入密码"
+                        required
+                    >
                 </div>
-            </aside>
-        </div>
-    </main>
 
-    <!-- 页脚 -->
-    <footer class="main-footer">
-        <div class="container footer-container">
-            <p><strong>智慧广电门户系统</strong> — 基于动态权限算法的基层治理平台</p>
-            <p class="footer-note">© 2025 西南民族大学大学生创新创业训练计划项目</p>
-        </div>
-    </footer>
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember">记住密码</label>
+                    </label>
+                    <a href="#" class="forgot-password">忘记密码？</a>
+                </div>
 
-    <!-- 引入JavaScript -->
-    <script type="module" src="js/main.js"></script>
+                <button type="submit" class="login-btn">立即登录</button>
+            </form>
+
+            <!-- 分割线 -->
+            <div class="divider">或</div>
+
+            <!-- 社交登录 -->
+            <div class="social-login">
+                <button class="social-btn">微信登录</button>
+                <button class="social-btn">QQ登录</button>
+            </div>
+
+            <!-- 注册链接 -->
+            <div class="signup-link">
+                还没有账号？<a href="#">立即注册</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                // 这里可以添加真实的登录逻辑
+                alert('登录成功！\n用户名: ' + username);
+                // window.location.href = 'dashboard.html';
+            }
+        });
+
+        // 社交登录按钮
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const method = this.textContent.trim();
+                console.log('使用 ' + method + ' 登录');
+            });
+        });
+    </script>
 </body>
 </html>
